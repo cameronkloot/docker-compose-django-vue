@@ -45,3 +45,5 @@ Install <a href="https://docs.docker.com/engine/installation/" target="_blank">D
 docker-compose build
 docker-compose up
 ```
+
+Check Makefile for additional commands
