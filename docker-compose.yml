@@ -1,0 +1,46 @@
+version: '2'
+services:
+  nginx:
+    restart: always
+    container_name: app_name_nginx
+    image: nginx:1.11.10
+    ports:
+      - '80:80'
+    volumes:
+      - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./www:/www
+    depends_on:
+      - api
+    logging:
+      options:
+        max-size: '100k'
+        max-file: '10'
+  api:
+    restart: always
+    container_name: app_name_api
+    entrypoint: /var/lib/api/api-entrypoint.sh
+    build: .
+    env_file: .env
+    command: bash -c "python manage.py collectstatic --no-input && gunicorn app_name.wsgi:application -w 2 -b :9000 --reload --log-level=debug --log-file=-  --timeout=300"
+    volumes:
+      - ./config/requirements.txt:/config/requirements.txt
+      - ./src:/src
+    expose:
+      - '9000'
+    logging:
+      options:
+        max-size: '100k'
+        max-file: '10'
+  client:
+    restart: always
+    container_name: app_name_client
+    image: node:8.5.0
+    command: bash -c "cd client && yarn install && yarn run dev"
+    volumes:
+      - ./client:/client
+    expose:
+      - '8080'
+    logging:
+      options:
+        max-size: '100k'
+        max-file: '10'

@@ -1,0 +1,9 @@
+version: '2'
+services:
+  nginx:
+    volumes:
+      - ./config/nginx/development.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - '8989:8989'
+  api:
+    command: gunicorn app_name.wsgi:application -w 2 -b :9000 --reload --log-level=debug --log-file=- --timeout=300
