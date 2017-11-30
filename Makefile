@@ -25,23 +25,26 @@ stop:
 reload:
 	docker-compose stop && docker-compose build && docker-compose up -d
 
-shell-nginx:
-	docker exec -ti app_name_nginx bash
+bash-nginx:
+	docker exec -it app_name_nginx bash
 
-shell-api:
-	docker exec -ti app_name_api bash
+bash-api:
+	docker exec -it app_name_api bash
 
-shell-client:
-	docker exec -ti app_name_client bash
+bash-client:
+	docker exec -it app_name_client bash
 
-shell-db:
-	docker exec -ti app_name_db bash
+bash-db:
+	docker exec -it app_name_db bash
 
 log-nginx:
 	docker-compose logs -f nginx
 
 log-api:
 	docker-compose logs -f api
+
+log-client:
+	docker-compose logs -f client
 
 collectstatic:
 	docker exec app_name_api /bin/sh -c "python manage.py collectstatic --noinput"

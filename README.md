@@ -30,6 +30,14 @@ listen_addresses = 'localhost,10.200.10.1'
 
 Restart Postgres
 
+### Environment
+
+```
+cp .env-sample .env
+```
+
+Host should be `10.200.10.1` as configured above.  Update db details
+
 ### Client
 
 ```
@@ -44,6 +52,18 @@ Install <a href="https://docs.docker.com/engine/installation/" target="_blank">D
 ```
 docker-compose build
 docker-compose up
+```
+
+Stop containers
+
+```
+docker-compose stop
+```
+
+Remove containers/volumns
+
+```
+docker-compose down
 ```
 
 Check Makefile for additional commands
