@@ -49,8 +49,6 @@ PROJECT_APPS = [
 
 INSTALLED_APPS = APPS + PROJECT_APPS
 
-DATABASE_ROUTERS = ['app_name.db_router.MainRouter']
-
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
