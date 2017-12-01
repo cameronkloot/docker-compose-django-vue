@@ -8,9 +8,9 @@ services:
       - '80:80'
     volumes:
       - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./www:/www
     depends_on:
       - api
+      - client
     logging:
       options:
         max-size: '100k'
@@ -35,7 +35,7 @@ services:
     restart: always
     container_name: app_name_client
     image: node:8.5.0
-    command: bash -c "cd client && yarn install && yarn run dev"
+    command: bash -c "cd client && yarn install && export HOST=0.0.0.0 && yarn run dev"
     volumes:
       - ./client:/client
     expose:
