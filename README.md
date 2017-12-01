@@ -67,3 +67,20 @@ docker-compose down
 ```
 
 Check Makefile for additional commands
+
+
+### Install Packages
+
+Install packages on the api
+
+```
+docker exec -ti app_name_api bash
+pip install package_name
+pip freeze > requirements.txt
+```
+
+Install packages with npm or yarn in the normal fashion within the client folder (on host machine or in container bash).
+
+### Disclaimer
+
+This setup hasn't been configured for production yet.
