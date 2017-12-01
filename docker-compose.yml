@@ -23,7 +23,6 @@ services:
     env_file: .env
     command: bash -c "python manage.py collectstatic --no-input && gunicorn app_name.wsgi:application -w 2 -b :9000 --reload --log-level=debug --log-file=-  --timeout=300"
     volumes:
-      - ./config/requirements.txt:/config/requirements.txt
       - ./src:/src
     expose:
       - '9000'
